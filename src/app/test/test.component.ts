@@ -19,11 +19,4 @@ export class TestComponent implements OnInit {
     // this.makeRequest();
   }
 
-  makeRequest() {
-    this.testService.getTest().subscribe((data: Test) => this.test = {
-      id: data.id,
-      title: data.title
-    })
-  }
-
 }
