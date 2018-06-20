@@ -47,7 +47,7 @@
       <div class="card-body">
         <div class="row mb-3">
           <div class="col-sm-6">
-            <button class="btn btn-outline-secondary btn-block">Save Draft</button>
+            <button class="btn btn-outline-secondary btn-block" (click)="save(form, 'draft')">Save Draft</button>
           </div>
           <div class="col-sm-6">
             <button class="btn btn-outline-secondary btn-block">Preview</button>
@@ -58,7 +58,7 @@
         <div class="row">
           <div class="col-sm-6"></div>
           <div class="col-sm-6">
-            <button class="btn btn-primary btn-block">Publish</button>
+            <button class="btn btn-primary btn-block" (click)="save(form, 'published')">Publish</button>
           </div>
         </div>
       </div>
@@ -70,7 +70,7 @@
       <div class="card-body">
         <div class="row">
           <div class="col-sm-12">
-            <ul>
+            <ul class="list-style-none">
               <li>
                 <span><input type="checkbox"> Category 1 <b>(primary)</b></span>
               </li>

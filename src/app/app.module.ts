@@ -4,12 +4,11 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {JwtModule} from '@auth0/angular-jwt';
 import {SimplemdeModule, SIMPLEMDE_CONFIG} from 'ng2-simplemde'
-import { TagInputModule } from 'ngx-chips';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {TagInputModule} from 'ngx-chips';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppComponent} from './app.component';
 import {RouterModule, Routes} from "@angular/router";
-import {TestComponent} from './test/test.component';
 import {LoginComponent} from './login/login.component';
 import {AuthGuardService} from "./auth-guard.service";
 import {GuestGuardService} from "./guest-guard.service";
@@ -18,7 +17,7 @@ import {PostEditComponent} from './posts/post-edit/post-edit.component';
 import {PostIndexComponent} from './posts/post-index/post-index.component';
 import {PostCreateComponent} from './posts/post-create/post-create.component';
 import {SidebarComponent} from './sidebar/sidebar.component';
-import { FeaturedImageComponent } from './shared/featured-image/featured-image.component';
+import {FeaturedImageComponent} from './shared/featured-image/featured-image.component';
 
 const appRoutes: Routes = [
   {
@@ -49,7 +48,6 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent,
     LoginComponent,
     PostsComponent,
     PostEditComponent,

@@ -3,6 +3,7 @@ body, html {
   min-height: 100%;
   background: #f1f1f1;
 }
+
 .tag-inline {
   display: inline-block;
   border: 1px solid #0079fb;
@@ -13,10 +14,21 @@ body, html {
   cursor: pointer;
   margin-bottom: 10px;
 }
+
 .tag-inline i {
   transition: color 0.2s ease;
 }
+
 .tag-inline i:hover {
   color: red;
   cursor: pointer;
+}
+
+.list-style-none li {
+  display: block;
+}
+
+.list-style-none li span {
+  display: block;
+  margin-bottom: 7px;
 }
