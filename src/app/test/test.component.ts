@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {TestService} from "../test.service";
 import {Test} from "../Test";
+import {AuthService} from "../auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-test',
@@ -12,11 +14,12 @@ export class TestComponent implements OnInit {
 
   test: Test;
 
-  constructor(protected testService: TestService) {
+  constructor(protected auth: AuthService, protected router: Router) {
   }
 
   ngOnInit() {
-    // this.makeRequest();
   }
+
+
 
 }

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../auth.service";
 import {Router} from "@angular/router";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-login',
@@ -9,6 +10,8 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  email: string;
+  password: string;
   form: FormGroup;
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
@@ -16,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      email: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),
     });
   }
@@ -26,8 +29,12 @@ export class LoginComponent implements OnInit {
     if (val.email && val.password) {
       this.authService.login(val.email, val.password)
         .subscribe(
-          () => {
-            this.router.navigateByUrl('/');
+          (value) => {
+            localStorage.setItem('access_token', value.token);
+            this.router.navigateByUrl('/posts');
+          },
+          (error: HttpErrorResponse) => {
+            this.form.controls['email'].setErrors({'badCredentials': true});
           }
         );
     }

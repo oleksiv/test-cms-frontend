@@ -1,4 +1,22 @@
 body, html {
   height: 100%;
   min-height: 100%;
+  background: #f1f1f1;
+}
+.tag-inline {
+  display: inline-block;
+  border: 1px solid #0079fb;
+  border-radius: 20px;
+  padding: 4px 12px;
+  color: #0079fb;
+  margin-right: 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.tag-inline i {
+  transition: color 0.2s ease;
+}
+.tag-inline i:hover {
+  color: red;
+  cursor: pointer;
 }
