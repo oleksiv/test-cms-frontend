@@ -17,7 +17,9 @@ import {PostEditComponent} from './posts/post-edit/post-edit.component';
 import {PostIndexComponent} from './posts/post-index/post-index.component';
 import {PostCreateComponent} from './posts/post-create/post-create.component';
 import {SidebarComponent} from './sidebar/sidebar.component';
-import {FeaturedImageComponent} from './shared/featured-image/featured-image.component';
+import { TagsWidgetComponent } from './shared/tags-widget/tags-widget.component';
+import { CategoriesWidgetComponent } from './shared/categories-widget/categories-widget.component';
+import { FeaturedImageWidgetComponent } from './shared/featured-image-widget/featured-image-widget.component';
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent, canActivate: [GuestGuardService]},
@@ -44,7 +46,9 @@ export function tokenGetter() {
     PostCreateComponent,
     PostIndexComponent,
     SidebarComponent,
-    FeaturedImageComponent,
+    TagsWidgetComponent,
+    CategoriesWidgetComponent,
+    FeaturedImageWidgetComponent,
   ],
   imports: [
     BrowserModule,

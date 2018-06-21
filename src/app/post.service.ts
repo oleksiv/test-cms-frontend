@@ -9,8 +9,12 @@ export class PostService {
   constructor(private http: HttpClient) {
   }
 
-  store(data) {
+  create(data) {
     return this.http.post('/api/posts', data);
+  }
+
+  update(data, id) {
+    return this.http.put('/api/posts/' + id, data);
   }
 
   get(id) {

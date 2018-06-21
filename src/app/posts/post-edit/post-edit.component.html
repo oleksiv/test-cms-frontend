@@ -17,17 +17,18 @@
         </div>
         <div class="row">
           <div class="col-sm-12">
-            <p><b>Permalink:</b>&nbsp;<a href="#">https://example.com/users/hello</a>&nbsp;<a href="#"
-                                                                                              class="btn btn-outline-secondary btn-sm">Edit</a>
+            <p *ngIf="!permalinkEditable"><b>Permalink:</b>&nbsp;<a href="{{currentUrl}}/{{form.controls['post_alias'].value}}" target="_blank">{{currentUrl}}/{{form.controls['post_alias'].value}}</a>
+              &nbsp;
+              <button class="btn btn-outline-secondary btn-sm" (click)="permalinkEditable = true">Edit</button>
             </p>
-            <div class="input-group mb-3">
+            <div class="input-group mb-3" *ngIf="permalinkEditable">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
+                <span class="input-group-text" id="basic-addon3">{{currentUrl}}/</span>
               </div>
               <input type="text" class="form-control" formControlName="post_alias"
                      [ngClass]="{'is-invalid':!form.controls['post_alias'].valid}">
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button">OK</button>
+                <button class="btn btn-outline-secondary" type="button" (click)="permalinkEditable = false">OK</button>
               </div>
               <div class="invalid-feedback" *ngFor="let error of form.controls['post_alias'].errors">{{error}}</div>
             </div>
@@ -52,7 +53,7 @@
       <div class="card-body">
         <div class="row mb-3">
           <div class="col-sm-6">
-            <button class="btn btn-outline-secondary btn-block" (click)="save(form, 'draft')">Save Draft</button>
+            <button class="btn btn-outline-secondary btn-block" (click)="update(form, 'draft')">Save Draft</button>
           </div>
           <div class="col-sm-6">
             <button class="btn btn-outline-secondary btn-block">Preview</button>
@@ -63,84 +64,16 @@
         <div class="row">
           <div class="col-sm-6"></div>
           <div class="col-sm-6">
-            <button class="btn btn-primary btn-block" (click)="save(form, 'published')">Publish</button>
+            <button class="btn btn-primary btn-block" (click)="update(form, 'published')">Publish</button>
           </div>
         </div>
       </div>
     </div>
-    <div class="card mb-3">
-      <h5 class="card-header">
-        Categories
-      </h5>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-sm-12">
-            <ul class="list-style-none">
-              <li>
-                <span><input type="checkbox"> Category 1 <b>(primary)</b></span>
-              </li>
-              <li>
-                <span><input type="checkbox"> Category 2</span>
-                <ul>
-                  <li>
-                    <span><input type="checkbox"> Sub Category 1</span>
-                  </li>
-                  <li>
-                    <span><input type="checkbox"> Sub Category 2</span>
-                  </li>
-                  <li>
-                    <span><input type="checkbox"> Sub Category 3</span>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <span><input type="checkbox"> Category 3</span>
-              </li>
-              <li>
-                <span><input type="checkbox"> Category 4</span>
-              </li>
-              <li>
-                <span><input type="checkbox"> Category 5</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="card mb-3">
-      <h5 class="card-header">
-        Tags
-      </h5>
-      <div class="card-body">
-        <div class="row mb-3">
-          <div class="col-sm-7">
-            <input type="text" class="form-control">
-          </div>
-          <div class="col-sm-5">
-            <button class="btn btn-outline-secondary btn-block">Add</button>
-          </div>
-        </div>
-        <div class="row mb-3">
-          <div class="col-sm-12">
-            <span class="tag-inline">Tag 1&nbsp;&nbsp;<i class="fas fa-times-circle"></i></span>
-            <span class="tag-inline">Tag 2&nbsp;&nbsp;<i class="fas fa-times-circle"></i></span>
-            <span class="tag-inline">Tag 3&nbsp;&nbsp;<i class="fas fa-times-circle"></i></span>
-            <span class="tag-inline">Tag 4&nbsp;&nbsp;<i class="fas fa-times-circle"></i></span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="card mb-3">
-      <h5 class="card-header">
-        Featured Image
-      </h5>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-sm-12 text-center pt-5 pb-5">
-            <a href="#" class="btn btn-outline-primary">Set featured image</a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!--Categories-->
+    <app-categories-widget></app-categories-widget>
+    <!--Tags-->
+    <app-tags-widget></app-tags-widget>
+    <!--Image-->
+    <app-featured-image-widget></app-featured-image-widget>
   </div>
 </form>
