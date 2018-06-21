@@ -8,8 +8,10 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="form-group">
-              <input type="text" formControlName="title" class="form-control form-control-lg"
+              <input type="text" formControlName="post_title" class="form-control form-control-lg"
+                     [ngClass]="{'is-invalid':!form.controls['post_title'].valid}"
                      placeholder="Enter title here">
+              <div class="invalid-feedback" *ngFor="let error of form.controls['post_title'].errors">{{error}}</div>
             </div>
           </div>
         </div>
@@ -22,17 +24,20 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
               </div>
-              <input type="text" class="form-control" formControlName="alias">
+              <input type="text" class="form-control" formControlName="post_alias"
+                     [ngClass]="{'is-invalid':!form.controls['post_alias'].valid}">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="button">OK</button>
               </div>
+              <div class="invalid-feedback" *ngFor="let error of form.controls['post_alias'].errors">{{error}}</div>
             </div>
+
           </div>
         </div>
         <div class="row">
           <div class="col-sm-12">
             <div class="form-group">
-              <simplemde formControlName="content"></simplemde>
+              <simplemde formControlName="post_content"></simplemde>
             </div>
           </div>
         </div>
