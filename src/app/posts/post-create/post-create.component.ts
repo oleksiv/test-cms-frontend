@@ -23,12 +23,14 @@ export class PostCreateComponent implements OnInit {
    * Show post tree data
    */
   ngOnInit() {
+    // This can be done a lot prettier; for example automatically assigning values by looping through `this.form.controls`,
+    // but we'll keep it as simple as possible here
     this.form = new FormGroup({
-      post_title: new FormControl(''),
-      post_content: new FormControl(''),
-      post_excerpt: new FormControl(''),
-      post_alias: new FormControl(''),
-      post_image: new FormControl(''),
+      post_title: new FormControl(),
+      post_content: new FormControl(),
+      post_excerpt: new FormControl(),
+      post_alias: new FormControl(),
+      post_image: new FormControl(),
       post_status: new FormControl('draft'),
     });
   }

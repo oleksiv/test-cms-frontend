@@ -24,12 +24,12 @@ export class PostEditComponent implements OnInit {
    */
   constructor(private http: HttpClient, private postService: PostService, private router: Router, private route: ActivatedRoute) {
     this.form = new FormGroup({
-      post_title: new FormControl(''),
-      post_content: new FormControl(''),
-      post_excerpt: new FormControl(''),
-      post_alias: new FormControl(''),
-      post_image: new FormControl(''),
-      post_status: new FormControl(''),
+      post_title: new FormControl(),
+      post_content: new FormControl(),
+      post_excerpt: new FormControl(),
+      post_alias: new FormControl(),
+      post_image: new FormControl(),
+      post_status: new FormControl(),
     });
   }
 

@@ -1,0 +1,8 @@
+img {
+  max-width: 100%;
+}
+.featured-image-remove {
+  position: absolute;
+  right: 27px;
+  top: 10px;
+}
