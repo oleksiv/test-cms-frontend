@@ -1,6 +1,6 @@
 <div class="row" [formGroup]="form">
   <div class="col-sm-12">
-    <div class="form-group" *ngIf="form.controls['post_title'].value">
+    <div class="form-group">
       <input type="text" formControlName="post_title" class="form-control"
              [ngClass]="{'is-invalid':!form.controls['post_title'].valid}"
              placeholder="Enter title here">

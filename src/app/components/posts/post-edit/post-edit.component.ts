@@ -39,12 +39,14 @@ export class PostEditComponent implements OnInit {
    */
   ngOnInit() {
     this.postService.get(this.route.snapshot.params.id).subscribe((value: Post) => {
-      this.form.setControl('post_title', new FormControl(value.post_title));
-      this.form.setControl('post_content', new FormControl(value.post_content));
-      this.form.setControl('post_excerpt', new FormControl(value.post_excerpt));
-      this.form.setControl('post_alias', new FormControl(value.post_alias));
-      this.form.setControl('post_image', new FormControl(value.post_image));
-      this.form.setControl('post_status', new FormControl(value.post_status));
+      this.form.setValue({
+        post_title: value.post_title,
+        post_content: value.post_content,
+        post_excerpt: value.post_excerpt,
+        post_alias: value.post_alias,
+        post_image: value.post_image,
+        post_status: value.post_status,
+      });
       this.child.render(value.post_image);
     });
   }
@@ -56,7 +58,9 @@ export class PostEditComponent implements OnInit {
   update(form: FormGroup, status) {
     form.controls['post_status'].patchValue(status);
     this.postService.update(form.value, this.route.snapshot.params.id).subscribe((value: Post) => {
-      this.form.setControl('post_alias', new FormControl(value.post_alias));
+      this.form.setValue({
+        post_alias: value.post_alias,
+      });
       // Disable permalink editable
       this.permalinkEditable = false;
     }, (error: HttpErrorResponse) => {

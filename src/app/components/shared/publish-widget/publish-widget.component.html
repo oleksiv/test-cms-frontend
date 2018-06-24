@@ -4,11 +4,12 @@
   </h5>
   <div class="card-body">
     <div class="row mb-3">
-      <div class="col-sm-6">
-        <button class="btn btn-outline-secondary btn-block" (click)="create('draft')">Save Draft</button>
-      </div>
-      <div class="col-sm-6">
-        <button class="btn btn-outline-secondary btn-block">Preview</button>
+      <div class="col-sm-4 pt-1">Status:</div>
+      <div class="col-sm-8">
+        <select name="" id="" class="form-control">
+          <option value="draft">Draft</option>
+          <option value="published">Published</option>
+        </select>
       </div>
     </div>
   </div>
@@ -16,7 +17,7 @@
     <div class="row">
       <div class="col-sm-6"></div>
       <div class="col-sm-6">
-        <button class="btn btn-primary btn-block" (click)="create('published')">Publish</button>
+        <button class="btn btn-primary btn-block" (click)="create()">Save</button>
       </div>
     </div>
   </div>
