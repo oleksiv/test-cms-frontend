@@ -1,0 +1,10 @@
+<div class="row" [formGroup]="form">
+  <div class="col-sm-12">
+    <div class="form-group" *ngIf="form.controls['post_title'].value">
+      <input type="text" formControlName="post_title" class="form-control"
+             [ngClass]="{'is-invalid':!form.controls['post_title'].valid}"
+             placeholder="Enter title here">
+      <div class="invalid-feedback" *ngFor="let error of form.controls['post_title'].errors">{{error}}</div>
+    </div>
+  </div>
+</div>

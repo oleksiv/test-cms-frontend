@@ -1,37 +1,33 @@
-import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {JwtModule} from '@auth0/angular-jwt';
-import {SimplemdeModule, SIMPLEMDE_CONFIG} from 'ng2-simplemde';
 import {TagInputModule} from 'ngx-chips';
+import {MomentModule} from 'angular2-moment';
+import {JwtModule} from '@auth0/angular-jwt';
+import {RoutingModule} from './routing.module';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {HttpClientModule} from '@angular/common/http';
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {SimplemdeModule, SIMPLEMDE_CONFIG} from 'ng2-simplemde';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppComponent} from './app.component';
-import {RouterModule, Routes} from '@angular/router';
-import {LoginComponent} from './login/login.component';
-import {AuthGuardService} from './auth-guard.service';
-import {GuestGuardService} from './guest-guard.service';
-import {PostsComponent} from './posts/posts.component';
-import {PostEditComponent} from './posts/post-edit/post-edit.component';
-import {PostIndexComponent} from './posts/post-index/post-index.component';
-import {PostCreateComponent} from './posts/post-create/post-create.component';
-import {SidebarComponent} from './sidebar/sidebar.component';
-import { TagsWidgetComponent } from './shared/tags-widget/tags-widget.component';
-import { CategoriesWidgetComponent } from './shared/categories-widget/categories-widget.component';
-import { FeaturedImageWidgetComponent } from './shared/featured-image-widget/featured-image-widget.component';
-
-const appRoutes: Routes = [
-  {path: 'login', component: LoginComponent, canActivate: [GuestGuardService]},
-  {
-    path: 'posts', component: PostsComponent, canActivate: [AuthGuardService], children: [
-      {path: 'create', component: PostCreateComponent},
-      {path: ':id/edit', component: PostEditComponent},
-      {path: '', component: PostIndexComponent}
-    ]
-  },
-  {path: '**', redirectTo: '/login'}
-];
+import {PostsComponent} from './components/posts/posts.component';
+import {LoginComponent} from './components/login/login.component';
+import {SidebarComponent} from './components/sidebar/sidebar.component';
+import {CategoriesComponent} from './components/categories/categories.component';
+import {CategoryCreateComponent} from './components/categories/category-create/category-create.component';
+import {CategoryEditComponent} from './components/categories/category-edit/category-edit.component';
+import {PostEditComponent} from './components/posts/post-edit/post-edit.component';
+import {PostIndexComponent} from './components/posts/post-index/post-index.component';
+import {PostCreateComponent} from './components/posts/post-create/post-create.component';
+import {TagsWidgetComponent} from './components/shared/tags-widget/tags-widget.component';
+import {CategoryIndexComponent} from './components/categories/category-index/category-index.component';
+import {CategoriesWidgetComponent} from './components/shared/categories-widget/categories-widget.component';
+import {FeaturedImageWidgetComponent} from './components/shared/featured-image-widget/featured-image-widget.component';
+import { PublishWidgetComponent } from './components/shared/publish-widget/publish-widget.component';
+import { PostTitleComponent } from './components/shared/post-title/post-title.component';
+import { PostAliasComponent } from './components/shared/post-alias/post-alias.component';
+import { PostContentComponent } from './components/shared/post-content/post-content.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -42,6 +38,10 @@ export function tokenGetter() {
     AppComponent,
     LoginComponent,
     PostsComponent,
+    CategoriesComponent,
+    CategoryCreateComponent,
+    CategoryEditComponent,
+    CategoryIndexComponent,
     PostEditComponent,
     PostCreateComponent,
     PostIndexComponent,
@@ -49,6 +49,10 @@ export function tokenGetter() {
     TagsWidgetComponent,
     CategoriesWidgetComponent,
     FeaturedImageWidgetComponent,
+    PublishWidgetComponent,
+    PostTitleComponent,
+    PostAliasComponent,
+    PostContentComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +61,8 @@ export function tokenGetter() {
     ReactiveFormsModule,
     TagInputModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(appRoutes),
+    MomentModule,
+    RoutingModule,
     SimplemdeModule.forRoot({
       provide: SIMPLEMDE_CONFIG,
       useValue: {
@@ -69,6 +74,7 @@ export function tokenGetter() {
         tokenGetter: tokenGetter,
       }
     }),
+    NgbModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

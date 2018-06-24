@@ -1,0 +1,23 @@
+<div class="card mb-3">
+  <h5 class="card-header">
+    Publish
+  </h5>
+  <div class="card-body">
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <button class="btn btn-outline-secondary btn-block" (click)="create('draft')">Save Draft</button>
+      </div>
+      <div class="col-sm-6">
+        <button class="btn btn-outline-secondary btn-block">Preview</button>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-sm-6"></div>
+      <div class="col-sm-6">
+        <button class="btn btn-primary btn-block" (click)="create('published')">Publish</button>
+      </div>
+    </div>
+  </div>
+</div>

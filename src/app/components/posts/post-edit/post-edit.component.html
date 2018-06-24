@@ -1,0 +1,20 @@
+<form class="row" [formGroup]="form">
+  <div class="col-sm-12 col-md-12 col-lg-8 col-xl-9">
+    <div class="card mb-3">
+      <h5 class="card-header">
+        Update post
+      </h5>
+      <div class="card-body">
+        <app-post-title [form]="form"></app-post-title>
+        <app-post-alias [form]="form"></app-post-alias>
+        <app-post-content [form]="form"></app-post-content>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-12 col-lg-4 col-xl-3">
+    <app-publish-widget [form]="form" (save)="update(form, $event)"></app-publish-widget>
+    <app-categories-widget></app-categories-widget>
+    <app-tags-widget></app-tags-widget>
+    <app-featured-image-widget [form]="form"></app-featured-image-widget>
+  </div>
+</form>

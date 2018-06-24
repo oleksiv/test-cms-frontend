@@ -1,0 +1,20 @@
+<div class="row" [formGroup]="form">
+  <div class="col-sm-12">
+    <p *ngIf="!permalinkEditable"><b>Permalink:</b>&nbsp;<a
+      href="{{currentUrl}}/{{form.controls['post_alias'].value}}" target="_blank">{{currentUrl}}/{{form.controls['post_alias'].value}}</a>
+      &nbsp;
+      <button class="btn btn-outline-secondary btn-sm" (click)="permalinkEditable = true">Edit</button>
+    </p>
+    <div class="input-group mb-3" *ngIf="permalinkEditable">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon3">{{currentUrl}}/</span>
+      </div>
+      <input type="text" class="form-control" formControlName="post_title"
+             [ngClass]="{'is-invalid':!form.controls['post_alias'].valid}">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" (click)="permalinkEditable = false">OK</button>
+      </div>
+      <div class="invalid-feedback" *ngFor="let error of form.controls['post_alias'].errors">{{error}}</div>
+    </div>
+  </div>
+</div>
