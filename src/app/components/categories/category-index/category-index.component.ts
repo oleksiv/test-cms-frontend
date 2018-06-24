@@ -13,6 +13,7 @@ export class CategoryIndexComponent implements OnInit {
   total_posts: number;
   current_page = 1;
   page_limit = 10;
+  options = {};
 
   constructor(protected categoryService: CategoryService) {
   }

@@ -25,12 +25,12 @@ export class PostEditComponent implements OnInit {
    */
   constructor(private http: HttpClient, private postService: PostService, private router: Router, private route: ActivatedRoute) {
     this.form = new FormGroup({
-      post_title: new FormControl(),
-      post_content: new FormControl(),
-      post_excerpt: new FormControl(),
-      post_alias: new FormControl(),
-      post_image: new FormControl(),
-      post_status: new FormControl(),
+      title: new FormControl(),
+      content: new FormControl(),
+      excerpt: new FormControl(),
+      alias: new FormControl(),
+      image: new FormControl(),
+      status: new FormControl(),
     });
   }
 
@@ -40,14 +40,14 @@ export class PostEditComponent implements OnInit {
   ngOnInit() {
     this.postService.get(this.route.snapshot.params.id).subscribe((value: Post) => {
       this.form.setValue({
-        post_title: value.post_title,
-        post_content: value.post_content,
-        post_excerpt: value.post_excerpt,
-        post_alias: value.post_alias,
-        post_image: value.post_image,
-        post_status: value.post_status,
+        title: value.title,
+        content: value.content,
+        excerpt: value.excerpt,
+        alias: value.alias,
+        image: value.image,
+        status: value.status,
       });
-      this.child.render(value.post_image);
+      this.child.render(value.image);
     });
   }
 
@@ -56,18 +56,18 @@ export class PostEditComponent implements OnInit {
    * @param status
    */
   update(form: FormGroup, status) {
-    form.controls['post_status'].patchValue(status);
+    form.controls['status'].patchValue(status);
     this.postService.update(form.value, this.route.snapshot.params.id).subscribe((value: Post) => {
       this.form.setValue({
-        post_alias: value.post_alias,
+        alias: value.alias,
       });
       // Disable permalink editable
       this.permalinkEditable = false;
     }, (error: HttpErrorResponse) => {
-      this.form.controls['post_title'].setErrors(error.error.messages.post_title);
-      this.form.controls['post_image'].setErrors(error.error.messages.post_image);
-      this.form.controls['post_status'].setErrors(error.error.messages.post_status);
-      this.form.controls['post_alias'].setErrors(error.error.messages.post_alias);
+      this.form.controls['title'].setErrors(error.error.messages.title);
+      this.form.controls['image'].setErrors(error.error.messages.image);
+      this.form.controls['status'].setErrors(error.error.messages.status);
+      this.form.controls['alias'].setErrors(error.error.messages.alias);
     });
   }
 }

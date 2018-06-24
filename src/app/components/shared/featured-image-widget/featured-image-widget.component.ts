@@ -11,7 +11,7 @@ import {ImageService} from '../../../services/image/image.service';
 })
 export class FeaturedImageWidgetComponent implements OnInit {
   @Input() form: FormGroup;
-  post_image: Image;
+  image: Image;
 
   constructor(private imageService: ImageService, protected route: ActivatedRoute) {
   }
@@ -28,7 +28,7 @@ export class FeaturedImageWidgetComponent implements OnInit {
     const uploadData = new FormData();
     uploadData.append('image_path', image, image.name);
     this.imageService.create(uploadData).subscribe((value: Image) => {
-      this.form.setControl('post_image', new FormControl(value.id));
+      this.form.setControl('image', new FormControl(value.id));
       this.render(value.id);
     });
   }
@@ -37,8 +37,8 @@ export class FeaturedImageWidgetComponent implements OnInit {
    * Removes post image from the form
    */
   remove() {
-    this.form.controls['post_image'].setValue(null);
-    this.post_image = null;
+    this.form.controls['image'].setValue(null);
+    this.image = null;
   }
 
   /**
@@ -47,7 +47,7 @@ export class FeaturedImageWidgetComponent implements OnInit {
   render(id: number) {
     if (id) {
       this.imageService.get(id).subscribe((value: Image) => {
-        this.post_image = value;
+        this.image = value;
       });
     }
   }

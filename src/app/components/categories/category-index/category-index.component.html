@@ -3,6 +3,8 @@
     Categories
     <a href="#" class="btn btn-outline-primary btn-sm ml-3" routerLink="/categories/create">Add new</a>
   </h5>
+  <app-recursive-categories [posts]="posts" [depth]="0"></app-recursive-categories>
+  <hr>
   <table class="table table-striped mb-0">
     <thead>
     <tr>
@@ -17,7 +19,7 @@
     <tr *ngFor="let post of posts">
       <td>{{post.id}}</td>
       <td>
-        <a [routerLink]="['/categories', post.id, 'edit']">{{post.post_title}}</a>
+        <a [routerLink]="['/categories', post.id, 'edit']">{{post.title}}</a>
       </td>
       <td></td>
       <td></td>

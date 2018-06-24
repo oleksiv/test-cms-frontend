@@ -13,6 +13,7 @@
   </div>
   <div class="col-sm-12 col-md-12 col-lg-4 col-xl-3">
     <app-publish-widget [form]="form" (save)="update(form, $event)"></app-publish-widget>
+    <app-parent-category [form]="form"></app-parent-category>
     <app-featured-image-widget [form]="form"></app-featured-image-widget>
   </div>
 </form>

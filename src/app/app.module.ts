@@ -23,11 +23,14 @@ import {PostCreateComponent} from './components/posts/post-create/post-create.co
 import {TagsWidgetComponent} from './components/shared/tags-widget/tags-widget.component';
 import {CategoryIndexComponent} from './components/categories/category-index/category-index.component';
 import {CategoriesWidgetComponent} from './components/shared/categories-widget/categories-widget.component';
+import {RecursiveCategoriesComponent} from './components/categories/recursive/categories.component';
 import {FeaturedImageWidgetComponent} from './components/shared/featured-image-widget/featured-image-widget.component';
-import { PublishWidgetComponent } from './components/shared/publish-widget/publish-widget.component';
-import { PostTitleComponent } from './components/shared/post-title/post-title.component';
-import { PostAliasComponent } from './components/shared/post-alias/post-alias.component';
-import { PostContentComponent } from './components/shared/post-content/post-content.component';
+import {PublishWidgetComponent} from './components/shared/publish-widget/publish-widget.component';
+import {PostTitleComponent} from './components/shared/post-title/post-title.component';
+import {PostAliasComponent} from './components/shared/post-alias/post-alias.component';
+import {PostContentComponent} from './components/shared/post-content/post-content.component';
+import {ParentCategoryComponent} from './components/shared/parent-category/parent-category.component';
+import {TreeViewDirective} from './directives/tree-view.directive';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -42,6 +45,7 @@ export function tokenGetter() {
     CategoryCreateComponent,
     CategoryEditComponent,
     CategoryIndexComponent,
+    RecursiveCategoriesComponent,
     PostEditComponent,
     PostCreateComponent,
     PostIndexComponent,
@@ -53,6 +57,8 @@ export function tokenGetter() {
     PostTitleComponent,
     PostAliasComponent,
     PostContentComponent,
+    ParentCategoryComponent,
+    TreeViewDirective,
   ],
   imports: [
     BrowserModule,
