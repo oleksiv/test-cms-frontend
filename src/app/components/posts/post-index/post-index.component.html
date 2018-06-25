@@ -29,7 +29,13 @@
 </div>
 <div class="row">
   <div class="col-sm-12">
-    <ngb-pagination class="d-flex justify-content-center" [collectionSize]="total_posts" [(page)]="current_page" [pageSize]="page_limit"
-                    (pageChange)="loadPosts()"></ngb-pagination>
+    <ngb-pagination
+      class="d-flex justify-content-center"
+      [collectionSize]="total_posts"
+      [(page)]="current_page"
+      [pageSize]="page_limit"
+      [maxSize]="5"
+      (pageChange)="loadPosts()">
+    </ngb-pagination>
   </div>
 </div>

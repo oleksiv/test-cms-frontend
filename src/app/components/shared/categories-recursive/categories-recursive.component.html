@@ -1,0 +1,20 @@
+<ul>
+  <li *ngFor="let category of categories" [ngClass]="{'default_category': defaultCategory(category)}">
+    <div class="text-nowrap">
+      <input
+        type="checkbox"
+        [value]="category.id"
+        [checked]="categoryChecked(category)"
+        (change)="updateCategories(category, $event)"
+      >
+      {{category.title}}
+      <span class="badge badge-secondary" (click)="makePrimary(category)">make primary</span>
+      <span class="badge badge-primary">primary</span>
+    </div>
+    <app-categories-recursive
+      *ngIf="category.children"
+      [categories]="category.children"
+      [form]="form"
+    ></app-categories-recursive>
+  </li>
+</ul>

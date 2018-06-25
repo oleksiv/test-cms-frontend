@@ -11,8 +11,9 @@
     </div>
     <div class="row" *ngIf="image">
       <div class="col-sm-12">
-        <!--<button class="btn btn-danger featured-image-remove" (click)="remove()">Remove</button>-->
-        <i class="fas fa-times-circle featured-image-remove" (click)="remove()"></i>
+        <button class="btn btn-sm btn-danger featured-image-remove" (click)="remove()">
+          <i class="fas fa-times"></i>
+        </button>
         <img [src]="image.image_path" alt="">
       </div>
     </div>

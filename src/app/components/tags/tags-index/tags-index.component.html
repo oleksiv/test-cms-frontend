@@ -1,14 +1,13 @@
 <div class="card text-left mb-5">
   <h5 class="card-header">
-    Categories
-    <a href="#" class="btn btn-outline-primary btn-sm ml-3" routerLink="/categories/create">Add new</a>
+    Tags
+    <a href="#" class="btn btn-outline-primary btn-sm ml-3" routerLink="/tags/create">Add new</a>
   </h5>
   <table class="table table-striped mb-0">
     <thead>
     <tr>
       <td>#</td>
       <td>Title</td>
-      <td>Children</td>
       <td>Date</td>
     </tr>
     </thead>
@@ -16,10 +15,7 @@
     <tr *ngFor="let post of posts">
       <td>{{post.id}}</td>
       <td>
-        <a [routerLink]="['/categories', post.id, 'edit']">{{post.title}}</a>
-      </td>
-      <td>
-        <a *ngIf="post.children" [routerLink]="['/categories']" [queryParams]="{parent_id: post.id}">{{post.children.length}}</a>
+        <a [routerLink]="['/tags', post.id, 'edit']">{{post.title}}</a>
       </td>
       <td>{{post.created_at | amDateFormat:'LL'}}</td>
     </tr>

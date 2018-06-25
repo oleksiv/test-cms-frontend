@@ -5,18 +5,15 @@
   <div class="card-body">
     <div class="row mb-3">
       <div class="col-sm-7">
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" [(ngModel)]="tagInput">
       </div>
       <div class="col-sm-5">
-        <button class="btn btn-outline-secondary btn-block">Add</button>
+        <button class="btn btn-outline-secondary btn-block" (click)="create(tagInput)">Add</button>
       </div>
     </div>
     <div class="row mb-3">
       <div class="col-sm-12">
-        <span class="tag-inline">Tag 1&nbsp;&nbsp;<i class="fas fa-times-circle"></i></span>
-        <span class="tag-inline">Tag 2&nbsp;&nbsp;<i class="fas fa-times-circle"></i></span>
-        <span class="tag-inline">Tag 3&nbsp;&nbsp;<i class="fas fa-times-circle"></i></span>
-        <span class="tag-inline">Tag 4&nbsp;&nbsp;<i class="fas fa-times-circle"></i></span>
+        <span class="tag-inline" *ngFor="let tag of this.form.controls['tags'].value">{{tag.title}}&nbsp;&nbsp;<i class="fas fa-times-circle" (click)="remove(tag)"></i></span>
       </div>
     </div>
   </div>

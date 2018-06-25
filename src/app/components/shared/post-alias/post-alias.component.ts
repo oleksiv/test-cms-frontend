@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormGroup} from '@angular/forms';
+import {Post} from '../../../contracts/post';
 
 @Component({
   selector: 'app-post-alias',
@@ -8,6 +9,7 @@ import {FormGroup} from '@angular/forms';
 })
 export class PostAliasComponent implements OnInit {
   @Input() form: FormGroup;
+  @Input() post: Post;
   permalinkEditable = false;
   currentUrl = window.location.origin;
 

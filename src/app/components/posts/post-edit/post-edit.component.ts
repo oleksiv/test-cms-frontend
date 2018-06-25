@@ -1,10 +1,12 @@
 import {Post} from '../../../contracts/post';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormArray, FormControl, FormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {PostService} from '../../../services/post/post.service';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {FeaturedImageWidgetComponent} from '../../shared/featured-image-widget/featured-image-widget.component';
+import {Category} from '../../../contracts/category';
+import {Tag} from '../../../contracts/tag';
 
 @Component({
   selector: 'app-post-edit',
@@ -14,7 +16,6 @@ import {FeaturedImageWidgetComponent} from '../../shared/featured-image-widget/f
 export class PostEditComponent implements OnInit {
 
   public form: FormGroup;
-  permalinkEditable = false;
   @ViewChild(FeaturedImageWidgetComponent) child: FeaturedImageWidgetComponent;
 
   /**
@@ -31,6 +32,9 @@ export class PostEditComponent implements OnInit {
       alias: new FormControl(),
       image: new FormControl(),
       status: new FormControl(),
+      categories: new FormControl(),
+      default_category: new FormControl(),
+      tags: new FormControl(),
     });
   }
 
@@ -46,23 +50,41 @@ export class PostEditComponent implements OnInit {
         alias: value.alias,
         image: value.image,
         status: value.status,
+        tags: value.tags,
+        categories: value.categories.map((cat: Category) => {
+          return cat.id;
+        }),
+        default_category: value.default_category ? value.default_category.id : null
       });
+
       this.child.render(value.image);
     });
   }
 
   /**
    * @param {FormGroup} form
-   * @param status
    */
-  update(form: FormGroup, status) {
-    form.controls['status'].patchValue(status);
-    this.postService.update(form.value, this.route.snapshot.params.id).subscribe((value: Post) => {
+  update(form: FormGroup) {
+    // Flatten tags
+    const _form = form.value;
+    _form.tags = form.value.tags.map((tag: Tag) => {
+      return tag.id;
+    });
+    this.postService.update(_form, this.route.snapshot.params.id).subscribe((value: Post) => {
       this.form.setValue({
+        title: value.title,
+        content: value.content,
+        excerpt: value.excerpt,
         alias: value.alias,
+        image: value.image,
+        status: value.status,
+        tags: value.tags,
+        categories: value.categories.map((cat: Category) => {
+          return cat.id;
+        }),
+        default_category: value.default_category ? value.default_category.id : null
       });
       // Disable permalink editable
-      this.permalinkEditable = false;
     }, (error: HttpErrorResponse) => {
       this.form.controls['title'].setErrors(error.error.messages.title);
       this.form.controls['image'].setErrors(error.error.messages.image);

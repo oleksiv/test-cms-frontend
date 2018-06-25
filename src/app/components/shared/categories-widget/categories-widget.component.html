@@ -5,35 +5,19 @@
   <div class="card-body">
     <div class="row">
       <div class="col-sm-12">
-        <ul class="list-style-none">
-          <li>
-            <span><input type="checkbox"> Category 1 <b>(primary)</b></span>
-          </li>
-          <li>
-            <span><input type="checkbox"> Category 2</span>
-            <ul>
-              <li>
-                <span><input type="checkbox"> Sub Category 1</span>
-              </li>
-              <li>
-                <span><input type="checkbox"> Sub Category 2</span>
-              </li>
-              <li>
-                <span><input type="checkbox"> Sub Category 3</span>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <span><input type="checkbox"> Category 3</span>
-          </li>
-          <li>
-            <span><input type="checkbox"> Category 4</span>
-          </li>
-          <li>
-            <span><input type="checkbox"> Category 5</span>
-          </li>
-        </ul>
+        <app-categories-recursive [categories]="categories" [form]="form"></app-categories-recursive>
       </div>
     </div>
+  </div>
+  <div class="card-footer">
+    <ngb-pagination
+      class="d-flex justify-content-center"
+      [collectionSize]="total_categories"
+      [(page)]="current_page"
+      [pageSize]="page_limit"
+      (pageChange)="load()"
+      [maxSize]="3"
+    >
+    </ngb-pagination>
   </div>
 </div>

@@ -11,6 +11,10 @@ import {CategoriesComponent} from './components/categories/categories.component'
 import {CategoryIndexComponent} from './components/categories/category-index/category-index.component';
 import {CategoryCreateComponent} from './components/categories/category-create/category-create.component';
 import {CategoryEditComponent} from './components/categories/category-edit/category-edit.component';
+import {TagsIndexComponent} from './components/tags/tags-index/tags-index.component';
+import {TagsComponent} from './components/tags/tags.component';
+import {TagCreateComponent} from './components/tags/tag-create/tag-create.component';
+import {TagEditComponent} from './components/tags/tag-edit/tag-edit.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent, canActivate: [GuestGuardService]},
@@ -26,6 +30,13 @@ const routes: Routes = [
       {path: 'create', component: CategoryCreateComponent},
       {path: ':id/edit', component: CategoryEditComponent},
       {path: '', component: CategoryIndexComponent}
+    ]
+  },
+  {
+    path: 'tags', component: TagsComponent, canActivate: [AuthGuardService], children: [
+      {path: 'create', component: TagCreateComponent},
+      {path: ':id/edit', component: TagEditComponent},
+      {path: '', component: TagsIndexComponent}
     ]
   },
   {path: '**', redirectTo: '/login'}

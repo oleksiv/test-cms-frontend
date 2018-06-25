@@ -4,6 +4,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {PostService} from '../../../services/post/post.service';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {Tag} from '../../../contracts/tag';
 
 @Component({
   selector: 'app-post-create',
@@ -11,16 +12,9 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
   styleUrls: ['./post-create.component.css']
 })
 export class PostCreateComponent implements OnInit {
-  form: FormGroup;
+  public form: FormGroup;
 
   constructor(private http: HttpClient, private postService: PostService, private router: Router) {
-  }
-
-  /**
-   * Get categories list
-   * Show post tree data
-   */
-  ngOnInit() {
     this.form = new FormGroup({
       title: new FormControl(),
       content: new FormControl(),
@@ -28,12 +22,26 @@ export class PostCreateComponent implements OnInit {
       alias: new FormControl(),
       image: new FormControl(),
       status: new FormControl('draft'),
+      categories: new FormControl([]),
+      default_category: new FormControl(),
+      tags: new FormControl([]),
     });
   }
 
-  create(form: FormGroup, status) {
-    form.controls['status'].patchValue(status);
-    this.postService.create(form.value).subscribe((value: Post) => {
+  /**
+   * Get categories list
+   * Show post tree data
+   */
+  ngOnInit() {
+  }
+
+  create(form: FormGroup) {
+    // Flatten tags
+    const _form = form.value;
+    _form.tags = form.value.tags.map((tag: Tag) => {
+      return tag.id;
+    });
+    this.postService.create(_form).subscribe((value: Post) => {
       this.router.navigate(['posts', value.id, 'edit']);
     }, (error: HttpErrorResponse) => {
       // This can be done a lot prettier; for example automatically assigning values by looping through `this.form.controls`,

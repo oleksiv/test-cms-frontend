@@ -5,4 +5,9 @@ img {
   position: absolute;
   right: 27px;
   top: 10px;
+  display: none;
+}
+
+.card-body:hover .featured-image-remove {
+  display: block;
 }

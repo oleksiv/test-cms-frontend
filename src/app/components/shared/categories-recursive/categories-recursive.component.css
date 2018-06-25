@@ -1,0 +1,19 @@
+li {
+  display: block;
+}
+
+li .badge-primary {
+  display: none;
+}
+
+li .badge-secondary {
+  cursor: pointer;
+  display: none;
+}
+
+.default_category > div > input[type=checkbox]:checked~.badge-primary {
+  display: inline-block;
+}
+li:not(.default_category) > div:hover > input[type=checkbox]:checked~.badge-secondary {
+  display: inline-block;
+}

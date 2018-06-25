@@ -1,5 +1,5 @@
 <form class="row" [formGroup]="form">
-  <div class="col-sm-12 col-md-12 col-lg-8 col-xl-9">
+  <div class="col-sm-12 col-md-12 col-lg-7">
     <div class="card mb-3">
       <h5 class="card-header">
         Add New Post
@@ -11,10 +11,10 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-12 col-md-12 col-lg-4 col-xl-3">
-    <app-publish-widget [form]="form" (save)="create(form, $event)"></app-publish-widget>
-    <app-categories-widget></app-categories-widget>
-    <app-tags-widget></app-tags-widget>
+  <div class="col-sm-12 col-md-12 col-lg-5">
+    <app-publish-widget [form]="form" (save)="create(form)"></app-publish-widget>
+    <app-categories-widget [form]="form"></app-categories-widget>
+    <app-tags-widget [form]="form"></app-tags-widget>
     <app-featured-image-widget [form]="form"></app-featured-image-widget>
   </div>
 </form>

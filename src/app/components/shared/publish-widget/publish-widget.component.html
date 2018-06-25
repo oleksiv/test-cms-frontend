@@ -1,4 +1,4 @@
-<div class="card mb-3">
+<div class="card mb-3" [formGroup]="form">
   <h5 class="card-header">
     Publish
   </h5>
@@ -6,10 +6,12 @@
     <div class="row mb-3">
       <div class="col-sm-4 pt-1">Status:</div>
       <div class="col-sm-8">
-        <select name="" id="" class="form-control">
-          <option value="draft">Draft</option>
-          <option value="published">Published</option>
+        <select class="form-control" formControlName="status" [ngClass]="{'is-invalid':!form.controls['status'].valid}">
+          <option [value]="option.alias" *ngFor="let option of options">
+            {{option.title}}
+          </option>
         </select>
+        <div class="invalid-feedback" *ngFor="let error of form.controls['status'].errors">{{error}}</div>
       </div>
     </div>
   </div>

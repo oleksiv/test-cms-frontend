@@ -16,7 +16,6 @@ import {Category} from '../../../contracts/category';
 export class CategoryEditComponent implements OnInit {
 
   form: FormGroup;
-  permalinkEditable = false;
   @ViewChild(FeaturedImageWidgetComponent) child: FeaturedImageWidgetComponent;
 
   /**
@@ -31,6 +30,8 @@ export class CategoryEditComponent implements OnInit {
       content: new FormControl(),
       alias: new FormControl(),
       image: new FormControl(),
+      parent: new FormControl(),
+      status: new FormControl(),
     });
   }
 
@@ -44,6 +45,8 @@ export class CategoryEditComponent implements OnInit {
         content: value.content,
         alias: value.alias,
         image: value.image,
+        parent: value.parent ? value.parent.id : null,
+        status: value.status,
       });
       this.child.render(value.image);
     });
@@ -54,18 +57,15 @@ export class CategoryEditComponent implements OnInit {
    * @param status
    */
   update(form: FormGroup, status) {
-    // form.setValue({
-    //   status: status,
-    // });
-    this.categoryService.update(form.value, this.route.snapshot.params.id).subscribe((value: Post) => {
+    this.categoryService.update(form.value, this.route.snapshot.params.id).subscribe((value: Category) => {
       this.form.setValue({
         title: value.title,
         content: value.content,
         alias: value.alias,
         image: value.image,
+        parent: value.parent ? value.parent.id : null,
+        status: value.status,
       });
-      // Disable permalink editable
-      this.permalinkEditable = false;
     }, (error: HttpErrorResponse) => {
       if (error.error.messages) {
         this.form.controls['title'].setErrors(error.error.messages.title);

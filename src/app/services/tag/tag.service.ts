@@ -4,21 +4,21 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class CategoryService {
+export class TagService {
 
   constructor(private http: HttpClient) {
   }
 
   create(data) {
-    return this.http.post('/api/categories', data);
+    return this.http.post('/api/tags', data);
   }
 
   update(data, id) {
-    return this.http.put('/api/categories/' + id, data);
+    return this.http.put('/api/tags/' + id, data);
   }
 
   get(id) {
-    return this.http.get('/api/categories/' + id);
+    return this.http.get('/api/tags/' + id);
   }
 
   all(options) {
@@ -29,12 +29,6 @@ export class CategoryService {
     if (options.limit) {
       params = params.append('limit', options.limit);
     }
-    if (options.parent_id) {
-      params = params.append('parent_id', options.parent_id);
-    }
-    if (options.flat) {
-      params = params.append('flat', options.flat);
-    }
-    return this.http.get('/api/categories', {params: params});
+    return this.http.get('/api/tags', {params: params});
   }
 }

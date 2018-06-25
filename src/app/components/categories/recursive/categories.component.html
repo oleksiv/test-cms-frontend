@@ -1,9 +1,0 @@
-<div *ngFor="let post of posts">
-  <div class="row">
-    <div class="col-sm-2">Deep: {{depth}}</div>
-    <div class="col-sm-2">{{post.id}}</div>
-    <div class="col-sm-4">{{post.title}}</div>
-    <div class="col-sm-4">{{post.created_at | amDateFormat:'LL'}}</div>
-  </div>
-  <app-recursive-categories [posts]="post.children" [depth]="depth + 1" *ngIf="post.children"></app-recursive-categories>
-</div>

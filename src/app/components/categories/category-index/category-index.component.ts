@@ -1,7 +1,8 @@
 import {Post} from '../../../contracts/post';
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {CategoryService} from '../../../services/category/category.service';
 import {Category} from '../../../contracts/category';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 
 @Component({
   selector: 'app-category-index',
@@ -13,20 +14,27 @@ export class CategoryIndexComponent implements OnInit {
   total_posts: number;
   current_page = 1;
   page_limit = 10;
-  options = {};
 
-  constructor(protected categoryService: CategoryService) {
+  constructor(protected categoryService: CategoryService, protected route: ActivatedRoute, protected router: Router) {
+
   }
 
   ngOnInit() {
-    this.loadPosts();
+    this.route.queryParams.subscribe(params => {
+      this.current_page = 1;
+      this.loadPosts(params.parent_id);
+    });
   }
 
-  loadPosts() {
-    this.categoryService.all(this.current_page, this.page_limit).subscribe((value: { total_categories: number, data: Category[] }) => {
+  loadPosts(parent_id) {
+    this.categoryService.all({
+      page: this.current_page,
+      limit: this.page_limit,
+      parent_id: parent_id,
+      flat: 2
+    }).subscribe((value: { total_categories: number, data: Category[] }) => {
       this.posts = value.data;
       this.total_posts = value.total_categories;
     });
   }
-
 }

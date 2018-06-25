@@ -9,6 +9,16 @@ import {FormGroup} from '@angular/forms';
 export class PublishWidgetComponent implements OnInit {
   @Output() save = new EventEmitter();
   @Input() form: FormGroup;
+  options = [
+    {
+      title: 'Draft',
+      alias: 'draft'
+    },
+    {
+      title: 'Published',
+      alias: 'published'
+    }
+  ];
 
   constructor() {
   }

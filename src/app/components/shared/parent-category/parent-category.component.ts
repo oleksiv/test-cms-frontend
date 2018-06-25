@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormGroup} from '@angular/forms';
+import {Category} from '../../../contracts/category';
+import {CategoryService} from '../../../services/category/category.service';
 
 @Component({
   selector: 'app-parent-category',
@@ -8,9 +10,17 @@ import {FormGroup} from '@angular/forms';
 })
 export class ParentCategoryComponent implements OnInit {
   @Input() form: FormGroup;
-  constructor() { }
+  categories: Category[];
+
+  constructor(private categoryService: CategoryService) {
+  }
 
   ngOnInit() {
+    this.categoryService.all({
+      flat: 1
+    }).subscribe((value: { data: Category[] }) => {
+      this.categories = value.data;
+    });
   }
 
 }
