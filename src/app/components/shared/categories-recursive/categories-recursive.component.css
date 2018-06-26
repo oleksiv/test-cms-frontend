@@ -14,6 +14,6 @@ li .badge-secondary {
 .default_category > div > input[type=checkbox]:checked~.badge-primary {
   display: inline-block;
 }
-li:not(.default_category) > div:hover > input[type=checkbox]:checked~.badge-secondary {
+li:not(.default_category) > div > input[type=checkbox]:checked~.badge-secondary {
   display: inline-block;
 }

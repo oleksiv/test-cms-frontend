@@ -10,6 +10,7 @@ import {Post} from '../../../contracts/post';
 export class PostAliasComponent implements OnInit {
   @Input() form: FormGroup;
   @Input() post: Post;
+  @Input() type: string;
   permalinkEditable = false;
   currentUrl = window.location.origin;
 

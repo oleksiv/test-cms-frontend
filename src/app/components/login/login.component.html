@@ -1,6 +1,6 @@
 <div class="text-center form-signin-wrapper">
 
-  <form class="form-signin" [formGroup]="form" (ngSubmit)="login(form.value)">
+  <form class="form-signin" [formGroup]="form" (ngSubmit)="login()">
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
     <div *ngIf="form.controls['email'].hasError('badCredentials') && form.controls['email'].touched" class="alert alert-danger">Bad credentials</div>
     <label for="inputEmail" class="sr-only">Email address</label>

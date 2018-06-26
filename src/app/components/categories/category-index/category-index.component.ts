@@ -14,6 +14,7 @@ export class CategoryIndexComponent implements OnInit {
   total_posts: number;
   current_page = 1;
   page_limit = 10;
+  parent_id: number;
 
   constructor(protected categoryService: CategoryService, protected route: ActivatedRoute, protected router: Router) {
 
@@ -22,7 +23,8 @@ export class CategoryIndexComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.current_page = 1;
-      this.loadPosts(params.parent_id);
+      this.parent_id = params.parent_id;
+      this.loadPosts(this.parent_id);
     });
   }
 

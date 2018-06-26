@@ -1,7 +1,7 @@
 <div class="row" [formGroup]="form">
   <div class="col-sm-12">
     <div class="form-group">
-      <input type="text" formControlName="title" class="form-control"
+      <input type="text" formControlName="title" class="form-control form-control-lg"
              [ngClass]="{'is-invalid':!form.controls['title'].valid}"
              placeholder="Enter title here">
       <div class="invalid-feedback" *ngFor="let error of form.controls['title'].errors">{{error}}</div>

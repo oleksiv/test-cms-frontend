@@ -15,14 +15,4 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
   }
 
-  logout(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.auth.logout();
-    this.router.navigateByUrl('/login');
-  }
-
-  getUsername() {
-    return this.auth.getUsername();
-  }
 }

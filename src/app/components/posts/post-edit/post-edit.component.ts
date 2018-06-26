@@ -87,9 +87,12 @@ export class PostEditComponent implements OnInit {
       // Disable permalink editable
     }, (error: HttpErrorResponse) => {
       this.form.controls['title'].setErrors(error.error.messages.title);
+      this.form.controls['content'].setErrors(error.error.messages.content);
+      this.form.controls['excerpt'].setErrors(error.error.messages.excerpt);
+      this.form.controls['alias'].setErrors(error.error.messages.alias);
       this.form.controls['image'].setErrors(error.error.messages.image);
       this.form.controls['status'].setErrors(error.error.messages.status);
-      this.form.controls['alias'].setErrors(error.error.messages.alias);
+      this.form.controls['default_category'].setErrors(error.error.messages.default_category);
     });
   }
 }

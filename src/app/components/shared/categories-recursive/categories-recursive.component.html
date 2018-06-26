@@ -6,6 +6,7 @@
         [value]="category.id"
         [checked]="categoryChecked(category)"
         (change)="updateCategories(category, $event)"
+        [disabled]="defaultCategory(category)"
       >
       {{category.title}}
       <span class="badge badge-secondary" (click)="makePrimary(category)">make primary</span>

@@ -6,7 +6,7 @@
       </h5>
       <div class="card-body">
         <app-post-title [form]="form"></app-post-title>
-        <app-post-alias [form]="form"></app-post-alias>
+        <app-post-alias [form]="form" type="category"></app-post-alias>
         <app-post-content [form]="form"></app-post-content>
       </div>
     </div>
@@ -14,7 +14,6 @@
   <div class="col-sm-12 col-md-12 col-lg-4 col-xl-3">
     <app-publish-widget [form]="form" (save)="create(form, $event)"></app-publish-widget>
     <app-parent-category [form]="form"></app-parent-category>
-    <app-tags-widget></app-tags-widget>
     <app-featured-image-widget [form]="form"></app-featured-image-widget>
   </div>
 </form>

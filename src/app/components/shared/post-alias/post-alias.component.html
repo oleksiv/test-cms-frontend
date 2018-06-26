@@ -1,13 +1,13 @@
 <div class="row" [formGroup]="form">
   <div class="col-sm-12">
     <p *ngIf="!permalinkEditable"><b>Permalink:</b>&nbsp;<a
-      href="{{currentUrl}}/{{form.controls['alias'].value}}" target="_blank">{{currentUrl}}/{{form.controls['alias'].value}}</a>
+      href="{{currentUrl}}/{{type}}/{{form.controls['alias'].value}}" target="_blank">{{currentUrl}}/{{type}}/{{form.controls['alias'].value}}</a>
       &nbsp;
       <button class="btn btn-outline-secondary btn-sm" (click)="permalinkEditable = true">Edit</button>
     </p>
     <div class="input-group mb-3" *ngIf="permalinkEditable">
       <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon3">{{currentUrl}}/</span>
+        <span class="input-group-text" id="basic-addon3">{{currentUrl}}/{{type}}/</span>
       </div>
       <input type="text" class="form-control" formControlName="alias"
              [ngClass]="{'is-invalid':!form.controls['alias'].valid}">

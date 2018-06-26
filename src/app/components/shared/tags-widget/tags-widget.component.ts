@@ -15,15 +15,18 @@ export class TagsWidgetComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.form.controls['tags'].value);
   }
 
   create(title) {
     this.tagService.create({
       title: title,
       status: 'published',
-    }).subscribe((value) => {
-      this.form.get('tags').value.push(value);
+    }).subscribe((value: Tag) => {
+      // Push if doesn't exist
+      const index: number = this.form.get('tags').value.find(tag => tag.title === value.title);
+      if (!index) {
+        this.form.get('tags').value.push(value);
+      }
       this.tagInput = null;
     });
   }

@@ -44,14 +44,13 @@ export class PostCreateComponent implements OnInit {
     this.postService.create(_form).subscribe((value: Post) => {
       this.router.navigate(['posts', value.id, 'edit']);
     }, (error: HttpErrorResponse) => {
-      // This can be done a lot prettier; for example automatically assigning values by looping through `this.form.controls`,
-      // but we'll keep it as simple as possible here
       this.form.controls['title'].setErrors(error.error.messages.title);
       this.form.controls['content'].setErrors(error.error.messages.content);
       this.form.controls['excerpt'].setErrors(error.error.messages.excerpt);
       this.form.controls['alias'].setErrors(error.error.messages.alias);
       this.form.controls['image'].setErrors(error.error.messages.image);
       this.form.controls['status'].setErrors(error.error.messages.status);
+      this.form.controls['default_category'].setErrors(error.error.messages.default_category);
     });
   }
 

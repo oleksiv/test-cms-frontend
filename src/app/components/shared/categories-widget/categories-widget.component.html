@@ -6,6 +6,7 @@
     <div class="row">
       <div class="col-sm-12">
         <app-categories-recursive [categories]="categories" [form]="form"></app-categories-recursive>
+        <div class="text-danger" *ngFor="let error of form.controls['default_category'].errors">{{error}}</div>
       </div>
     </div>
   </div>

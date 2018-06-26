@@ -4,7 +4,7 @@ import {MomentModule} from 'angular2-moment';
 import {JwtModule} from '@auth0/angular-jwt';
 import {RoutingModule} from './routing.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SimplemdeModule, SIMPLEMDE_CONFIG} from 'ng2-simplemde';
@@ -34,6 +34,9 @@ import { TagsIndexComponent } from './components/tags/tags-index/tags-index.comp
 import { TagsComponent } from './components/tags/tags.component';
 import { TagCreateComponent } from './components/tags/tag-create/tag-create.component';
 import { TagEditComponent } from './components/tags/tag-edit/tag-edit.component';
+import {SlimLoadingBarModule} from 'ng2-slim-loading-bar';
+import {LoaderInterceptorService} from './interceptors/loader-interceptor.service';
+import { ExcerptComponent } from './components/shared/excerpt/excerpt.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -65,6 +68,7 @@ export function tokenGetter() {
     TagsComponent,
     TagCreateComponent,
     TagEditComponent,
+    ExcerptComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,8 +91,15 @@ export function tokenGetter() {
       }
     }),
     NgbModule.forRoot(),
+    SlimLoadingBarModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptorService,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
